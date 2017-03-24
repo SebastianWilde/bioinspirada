@@ -6,7 +6,7 @@ int main()
 {
     Grilla gri1(20);
     int time=0;
-    while (time<50)
+    while (time<10)
     {
         gri1.Simular();
         time++;

@@ -8,7 +8,6 @@ struct Nido
     char name;
     int posx,posy;
     int comida;
-  //  Nido();
     Nido(int x, int y)
     {
         posx=x;
@@ -21,6 +20,4 @@ struct Nido
         cout<<endl<<"Cantidad de comida en el nido: "<<comida<<endl;
     }
 };
-
-
 #endif // NIDO_H_INCLUDED
