@@ -25,7 +25,7 @@ string int_to_bits(int numero)
     string aux="";
     for (int i=maxBits-1;i>-1;i--)
         aux+=binario[i];
-    cout << "En sistema binario " << numero<< " se escribe " <<aux<<endl ;
+    //cout << "En sistema binario " << numero<< " se escribe " <<aux<<endl ;
     return aux;
 }
 
