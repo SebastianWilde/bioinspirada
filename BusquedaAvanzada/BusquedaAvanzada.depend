@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1492578629 source:f:\sebastian\documents\sanpa\8semestre\computacion bioinspirada\practica\bioinspirada\busquedaavanzada\main.cpp
+	<iostream>
+	"genetico.h"
+
+1492578702 f:\sebastian\documents\sanpa\8semestre\computacion bioinspirada\practica\bioinspirada\busquedaavanzada\genetico.h
+	"funciones.h"
+
+1492578552 f:\sebastian\documents\sanpa\8semestre\computacion bioinspirada\practica\bioinspirada\busquedaavanzada\funciones.h
+	<iostream>
+	<bits/stdc++.h>
+	<time.h>
+
