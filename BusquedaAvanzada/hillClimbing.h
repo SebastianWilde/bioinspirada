@@ -1,6 +1,7 @@
 #ifndef HILLCLIMBING_H_INCLUDED
 #define HILLCLIMBING_H_INCLUDED
 #include "funciones.h"
+
 int generar(int sol)
 {
     int distribucion [] = {4,3,2,1};
@@ -14,8 +15,10 @@ int generar(int sol)
     return bit_to_int(ind);
 }
 
-int hClimbing(int (*eval)(int))
+int hClimbing(int (*eval)(int), vector< pair<double,double> > &data)
 {
+    vector < pair<double,double> > datos;
+    double it = 0;
     srand(time(NULL));
     int sol = rand() % 16;
     int valor = eval(sol);
@@ -25,8 +28,13 @@ int hClimbing(int (*eval)(int))
         int nuevaSol = generar (sol);
         int nuevoValor = eval(nuevaSol);
         if (nuevoValor>valor) sol=nuevaSol;
-        tiempo -=0.1;
+        pair <double,int> aux;
+        aux.first = eval(sol);
+        aux.second = it;
+        it++;
+        tiempo -=0.01;
     }
+    data=datos;
     return sol;
 }
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <bits/stdc++.h>
 #include <time.h>
+#include <utility>
 using namespace std;
 
 string int_to_bits(int numero)
