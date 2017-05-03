@@ -198,7 +198,7 @@ int main()
     string documento = "valores.txt";
     string datos = "";
 
-    double time = 10.0;
+    double time = 5.0;
     int iteracion = 0;
     do
     {
@@ -212,15 +212,17 @@ int main()
 
             solucion = sol1;
             aux2 = mutacion(sol2,critic2);
+            aux1 = reproduccion(sol1,sol2,critic1);
             //sol 2 = mutacion sol2
         }
         else
         {
             solucion = sol2;
             aux2 = mutacion(sol1,critic1);
+            aux1 = reproduccion(sol2,sol1,critic2);
             //sol 2 = mutacion sol1
         }
-        aux1 = reproduccion(sol1,sol2,critic1);
+
         sol1.clear();
         sol2.clear();
         sol1 = aux1;
