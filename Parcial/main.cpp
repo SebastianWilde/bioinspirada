@@ -198,7 +198,7 @@ int main()
     string documento = "valores.txt";
     string datos = "";
 
-    double time = 5.0;
+    double time = 1.0;
     int iteracion = 0;
     do
     {
@@ -231,7 +231,7 @@ int main()
         /*Escribir los datos obtenidos en un txt*/
         string x = int_to_string(iteracion);
         string y = double_to_str(fitness(solucion,cric));
-        datos += x + " " + y;
+        datos = y;//x + " " + y;
         str_to_txt(documento,datos);
         datos = "";
         /*Incremento*/
