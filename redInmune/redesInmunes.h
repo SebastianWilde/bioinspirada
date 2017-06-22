@@ -106,8 +106,9 @@ bool redesInmunes::crearAnticuerpo(vector<redes> &anticuerpo,int nClones)
 {
     for (int i=0;i<nClones;i++)
     {
-        int x = rand3(0,10);
-        int y = rand3(0,10);
+        int x = randoms -> sorte(10);//(0,10);
+        int y = randoms -> sorte(10);//rand3(0,10);
+        //cout <<x<<" "<<y<<endl;
         redes a(x,y);
         anticuerpo.push_back(a);
     }
@@ -167,7 +168,7 @@ bool redesInmunes::generarClones(vector<redes> &clones)
     {
         //calcular la cantidad de clones proporcional afinidad*10
         int cantidadClones = ceil(mayorAfinidad[i].valorAfinidadPatron * 10);
-        cout<<"Cantidadde que se clonara "<<cantidadClones<<endl;
+        //cout<<"Cantidadde que se clonara "<<cantidadClones<<endl;
         for (int j=0;j<cantidadClones;j++) clones.push_back(mayorAfinidad[i]);
     }
     return 1;
@@ -178,9 +179,13 @@ bool redesInmunes::mutacion(vector<redes> &clones)
 {
     for (int i = 0;i<(int)clones.size();i++)
     {
-        int cambio = clones[i].x - clones[i].y;
-        clones[i].x += rand3(0,5)/2;
-        clones[i].y -= rand3(0,5)/2;
+        int ran = randoms -> sorte(10);
+        int ran2 = randoms ->sorte(10);
+        //cout<<endl<<ran<<" "<<ran2<<endl;
+        //if (ran<0) ran = ran*(-1);
+        //if (ran>0) ran = 10-ran;
+        clones[i].x +=ran;//+= rand3(0,5)/2;
+        clones[i].y +=ran2;//-= rand3(0,5)/2;
         clones[i].valorAfinidadPatron = 0;
     }
     return 1;
@@ -201,26 +206,26 @@ bool redesInmunes::inicio()
             cout<<"Trabajando con "<<patrones[i][0]<<","<<patrones[i][1]<<endl;
             //Calculando la afinidad de cada anticuerpo con un patron
             cout<<"Calcular afinidad patrones "<<calcularAfinidadPatrones(anticuerpos,patrones[i])<<endl;
-            cout<<"Primeros anticuerpos con afinidad"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
+            /*cout<<"Primeros anticuerpos con afinidad"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
             for (int j=0;j<(int)anticuerpos.size();j++)
             {
                 anticuerpos[j].print();
-            }
+            }*/
             vector<redes> clones;
             cout<<"Generando clones "<<generarClones(clones)<<endl;
-            cout<<"Clones"<<endl<<"size clones "<<clones.size()<<endl;
+            /*cout<<"Clones"<<endl<<"size clones "<<clones.size()<<endl;
             for (int j=0;j<(int)clones.size();j++)
             {
                 clones[j].print();
-            }
+            }*/
             cout<<"Mutando "<<mutacion(clones)<<endl;
             calcularAfinidadPatrones(clones,patrones[i]);
-            cout<<"Mutacion"<<endl<<"size clones "<<clones.size()<<endl;
+            /*cout<<"Mutacion"<<endl<<"size clones "<<clones.size()<<endl;
             for (int j=0;j<(int)clones.size();j++)
             {
                 clones[j].print();
-            }
-
+            }*/
+            cout<<"Umbral con patrones"<<endl;
             for (int j=0;j<(int)clones.size();j++)
             {
                 if (clones[j].valorAfinidadPatron>umbralClones)
@@ -228,11 +233,11 @@ bool redesInmunes::inicio()
                     anticuerpos.push_back(clones[j]);
                 }
             }
-            cout<<"Filtro del umbral"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
+            /*cout<<"Filtro del umbral"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
             for (int j=0;j<(int)anticuerpos.size();j++)
             {
                 anticuerpos[j].print();
-            }
+            }*/
         }
         cout<<"Se calculo afinidad con las demas redes: "<<calcularAfinidadRedes(anticuerpos)<<endl;
         vector<redes> aux;
@@ -245,34 +250,34 @@ bool redesInmunes::inicio()
         }
         anticuerpos.clear();
         anticuerpos = aux;
-        cout<<"Filtro del umbral red"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
+        /*cout<<"Filtro del umbral red"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
         for (int j=0;j<(int)anticuerpos.size();j++)
         {
             anticuerpos[j].print();
-        }
+        }*/
         int nuevosAnticuerpos = rand3(1,5);
-        cout <<"Cantidad de nuevos anticuerpos "<<nuevosAnticuerpos<<endl;
+        //cout <<"Cantidad de nuevos anticuerpos "<<nuevosAnticuerpos<<endl;
         cout<<"Nuevos anticuerpos agregados "<<crearAnticuerpo(anticuerpos,nuevosAnticuerpos);
-        cout<<"Nuevas redes"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
+        /*cout<<"Nuevas redes"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
         for (int j=0;j<(int)anticuerpos.size();j++)
         {
             anticuerpos[j].print();
-        }
+        }*/
         criterio--;
     }
     for(int i=0;i<(int)patrones.size();i++) calcularAfinidadPatrones(anticuerpos,patrones[i]);
-    cout<<"Calculo de afinidad final"<<endl;
-    cout<<"Final"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
-    for (int j=0;j<(int)anticuerpos.size();j++)
+    //cout<<"Calculo de afinidad final"<<endl;
+    //cout<<"Final"<<endl<<"size anticuerpos "<<anticuerpos.size()<<endl;
+    /*for (int j=0;j<(int)anticuerpos.size();j++)
     {
             anticuerpos[j].print();
-    }
+    }*/
     return 1;
 }
 
 void redesInmunes::Print()
 {
-    cout<<"--------------Resultado-----------------"<<endl;
+    cout<<endl<<"--------------Resultado-----------------"<<endl;
     cout<<"Cantidad de anticuerpos: "<<anticuerpos.size()<<endl;
     for (int i=0;i<(int)patrones.size();i++)
     {
